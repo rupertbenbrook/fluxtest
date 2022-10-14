@@ -1,0 +1,43 @@
+apiVersion: helm.toolkit.fluxcd.io/v2beta1
+kind: HelmRelease
+metadata:
+  name: ingress-nginx
+  namespace: ingress-nginx
+spec:
+  interval: 5m
+  chart:
+    spec:
+      chart: ingress-nginx
+      version: 4.3.0
+      sourceRef:
+        kind: HelmRepository
+        name: ingress-nginx
+        namespace: ingress-nginx
+      interval: 1m
+  values:
+    controller:
+      service:
+        enabled: true
+      metrics:
+        enabled: true
+        serviceMonitor:
+          additionalLabels:
+            release: prometheus
+          enabled: true
+      replicaCount: 3
+      resources:
+        requests:
+        limits:
+          cpu: 250m
+          memory: 250Mi
+      autoscaling:
+        enabled: true
+        minReplicas: 3
+        maxReplicas: 12
+        targetCPUUtilizationPercentage: 80
+        targetMemoryUtilizationPercentage: 80
+      config:
+        use-gzip: true
+        enable-brotli: true
+        enable-modsecurity: true
+        enable-owasp-modsecurity-crs: true
