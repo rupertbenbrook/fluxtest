@@ -18,7 +18,7 @@ spec:
     prometheus:
       enabled: true
       prometheusSpec:
-        podMonitorSelectorNilUsesHelmValues: false 
+        podMonitorSelectorNilUsesHelmValues: false
         serviceMonitorSelectorNilUsesHelmValues: false
     grafana:
       enabled: true
