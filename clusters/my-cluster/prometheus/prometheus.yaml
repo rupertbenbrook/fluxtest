@@ -15,3 +15,11 @@ spec:
         namespace: prometheus
       interval: 1m
   values:
+    prometheus:
+      enabled: true
+      prometheusSpec:
+        podMonitorSelectorNilUsesHelmValues: false 
+        serviceMonitorSelectorNilUsesHelmValues: false
+    grafana:
+      enabled: true
+      defaultDashboardsEnabled: true
