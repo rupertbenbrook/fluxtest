@@ -58,23 +58,21 @@ sops:
     fp: 16788508B5E234FA00C4B6B3C96A3F5B69BBD5A6
   encrypted_regex: ^(data|stringData)$
   version: 3.7.3
----
-apiVersion: cert-manager.io/v1
-kind: ClusterIssuer
-metadata:
-  name: letsencrypt
-spec:
-  dependsOn:
-    - name: cert-manager
-  acme:
-    server: https://acme-v02.api.letsencrypt.org/directory
-    email: rupert@benbrook.org.uk
-    privateKeySecretRef:
-      name: letsencrypt
-    solvers:
-    - dns01:
-        cloudflare:
-          email: rupert@benbrook.org.uk
-          apiTokenSecretRef:
-            name: cloudflare-api-token-secret
-            key: api-token
+# ---
+# apiVersion: cert-manager.io/v1
+# kind: ClusterIssuer
+# metadata:
+#   name: letsencrypt
+# spec:
+#   acme:
+#     server: https://acme-v02.api.letsencrypt.org/directory
+#     email: rupert@benbrook.org.uk
+#     privateKeySecretRef:
+#       name: letsencrypt
+#     solvers:
+#     - dns01:
+#         cloudflare:
+#           email: rupert@benbrook.org.uk
+#           apiTokenSecretRef:
+#             name: cloudflare-api-token-secret
+#             key: api-token
